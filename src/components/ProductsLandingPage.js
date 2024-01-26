@@ -1,8 +1,8 @@
 import ProductList from "./ProductsList";
 import { useState, useEffect } from "react";
+import { getCategories } from "../util/product-utils";
 
 import classes from './ProductsLandingPage.module.css';
-
 
 function ProductsLandingPage({ productList }) {
 
@@ -29,35 +29,20 @@ function ProductsLandingPage({ productList }) {
   }
 
   useEffect(() => {
-    if(selectedCategories.length === 0){
-        setFilteredProductList(productList);
-    } else{
-        setFilteredProductList(productList.filter((item)=>(selectedCategories.includes(item.category))));
+    if (selectedCategories.length === 0) {
+      setFilteredProductList(productList);
+    } else {
+      setFilteredProductList(productList.filter((item) => (selectedCategories.includes(item.category))));
     }
   }, [selectedCategories, productList])
 
-  const getCategories = async () => {
-    setLoading(true);
-
-    await fetch('https://dummyjson.com/products/categories')
-      .then(res => res.json())
-      .then(data => {
-        setCategories(data);
-      })
-      .catch(err => alert(err))
-      .finally(() => {
-        setLoading(false);
-      })
-  }
-
   useEffect(() => {
     if (productList) {
-      setFilteredProductList(productList);
-      getCategories(); // get the categories list
+      const ncat = getCategories(productList); // get the categories list
+      setCategories(ncat);
     }
   }, [productList])
 
-  console.log("fileredProductList", fileredProductList);
   return (
     <div>
       <div className={classes.horizontalBar}>
