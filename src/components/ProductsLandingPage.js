@@ -34,14 +34,14 @@ function ProductsLandingPage({ productList }) {
     } else {
       setFilteredProductList(productList.filter((item) => (selectedCategories.includes(item.category))));
     }
-  }, [selectedCategories, productList])
+  }, [selectedCategories, productList]);
 
   useEffect(() => {
     if (productList) {
-      const ncat = getCategories(productList); // get the categories list
+      const ncat = getCategories(productList);
       setCategories(ncat);
     }
-  }, [productList])
+  }, [productList]);
 
   return (
     <div>
