@@ -12,7 +12,7 @@ function ProductsPage() {
       <Await resolve={products} errorElement={<RedirectPage />} >
         {(loadedProduts) => {
           if (loadedProduts && loadedProduts.length > 0) {
-            return <ProductsLandingPage products={loadedProduts} />
+            return <ProductsLandingPage productList={loadedProduts} />
           }}}
       </Await>
     </Suspense>

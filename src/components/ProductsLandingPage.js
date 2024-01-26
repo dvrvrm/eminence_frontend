@@ -4,10 +4,9 @@ import { useState, useEffect } from "react";
 import classes from './ProductsLandingPage.module.css';
 
 
-function ProductsLandingPage({ products }) {
+function ProductsLandingPage({ productList }) {
 
   const [loading, setLoading] = useState(false);
-  const [productList, setProductList] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [fileredProductList, setFilteredProductList] = useState([]);
@@ -20,16 +19,22 @@ function ProductsLandingPage({ products }) {
 
   const removeCategory = (category) => {
     if (selectedCategories.includes(category)) {
-      console.log(selectedCategories)
       const removedList = selectedCategories.filter((item) => (item !== category));
       setSelectedCategories(removedList);
     }
   }
 
-
   const resetCategory = () => {
     setSelectedCategories([]);
   }
+
+  useEffect(() => {
+    if(selectedCategories.length === 0){
+        setFilteredProductList(productList);
+    } else{
+        setFilteredProductList(productList.filter((item)=>(selectedCategories.includes(item.category))));
+    }
+  }, [selectedCategories, productList])
 
   const getCategories = async () => {
     setLoading(true);
@@ -46,12 +51,11 @@ function ProductsLandingPage({ products }) {
   }
 
   useEffect(() => {
-    if (products) {
-      setProductList(products);
-      setFilteredProductList(products);
+    if (productList) {
+      setFilteredProductList(productList);
       getCategories(); // get the categories list
     }
-  }, [products])
+  }, [productList])
 
   console.log("fileredProductList", fileredProductList);
   return (
@@ -69,7 +73,7 @@ function ProductsLandingPage({ products }) {
                   addCategory(category);
                 }
               }}
-              className={classes.categoryItem}>
+              className={selectedCategories.includes(category) ? classes.categoryItemSelected : classes.categoryItem}>
               {category.split("-").join(" ")}
             </div>
           ))
