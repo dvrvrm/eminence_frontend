@@ -1,14 +1,21 @@
-import {json} from 'react-router-dom';
-import { redirect } from 'react-router-dom/dist';
+import { json } from 'react-router-dom';
+import { redirect, useNavigate } from 'react-router-dom/dist';
 import SignInForm from '../components/SignInForm';
+import { createPortal } from 'react-dom';
 
 function SignIn() {
-  return <SignInForm />;
+  let navigate = useNavigate();
+
+  function closePop() {
+    navigate('/');
+  };
+
+  return createPortal(<SignInForm closePop={closePop} />, document.getElementById("modal"));
 }
 
 export default SignIn;
 
-export async function action({request}) {
+export async function action({ request }) {
   const data = await request.formData();
   const authData = {
     email: data.get('email'),
@@ -28,7 +35,7 @@ export async function action({request}) {
   }
 
   if (!response.ok) {
-    throw json({message: 'Could not authenticate user'}, {status: 500});
+    throw json({ message: 'Could not authenticate user' }, { status: 500 });
   }
 
   const resData = await response.json();

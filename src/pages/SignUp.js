@@ -6,11 +6,11 @@ import { createPortal } from 'react-dom';
 function SignUp() {
   let navigate = useNavigate();
 
-  function togglePop() {
+  function closePop() {
     navigate('/');
   };
 
-  return createPortal(<SignUpForm toggle={togglePop} />, document.getElementById("modal"));
+  return createPortal(<SignUpForm closePop={closePop} />, document.getElementById("modal"));
 }
 
 export default SignUp;

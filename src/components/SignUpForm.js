@@ -29,9 +29,9 @@ function SignUpForm(props) {
               Password:
               <input id="password" type="password" name="password" required />
             </label>
-            <button type="submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : 'Sign In'}</button>
+            <button type="submit" disabled={isSubmitting}>{isSubmitting ? 'Submitting...' : 'Sign Up'}</button>
           </Form>
-          <button type="button" onClick={props.toggle}>Close</button>
+          <button type="button" onClick={props.closePop}>Close</button>
         </div>
       </div>
     </>
