@@ -1,0 +1,47 @@
+.horizontalBar {
+    background-color: red;
+    overflow-x: auto;
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+
+.categories {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.categoryItem {
+    display: inline-block;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: white;
+    margin-right: 10px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid #3498db; /* Blue border color */
+    color: #3498db; /* Blue text color */
+    transition: background-color 0.3s ease;
+}
+
+/* Hover effect */
+.categoryItem:hover {
+    background-color: #3498db; /* Blue background color on hover */
+    color: #fff; /* White text color on hover */
+}
+
+/* White button variation */
+.categoryItem.white {
+    border-color: #fff; /* White border color */
+    color: #fff; /* White text color */
+}
+
+/* Hover effect for white button */
+.categoryItem.white:hover {
+    background-color: #fff; /* White background color on hover */
+    color: #3498db; /* Blue text color on hover */
+}

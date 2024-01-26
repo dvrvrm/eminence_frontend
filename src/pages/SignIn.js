@@ -1,5 +1,5 @@
 import { json } from 'react-router-dom';
-import { redirect, useNavigate } from 'react-router-dom/dist';
+import { redirect, useNavigate } from 'react-router-dom';
 import SignInForm from '../components/SignInForm';
 import { createPortal } from 'react-dom';
 
